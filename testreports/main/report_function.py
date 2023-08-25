@@ -1,4 +1,4 @@
-from django.db.models import F, Count, FloatField, ExpressionWrapper, Case, When, Q, IntegerField
+from django.db.models import F, Count, Case, When, Q, IntegerField
 from django.db.models.functions import ExtractDay, ExtractMonth, ExtractYear
 
 from datetime import date
@@ -33,7 +33,7 @@ def create_report():
             block_key: {
                 'count_block_users': users_for_current_block.count(), 
                 'string_borders': f'{borders[0]}/{borders[1]}',
-                'users': users_for_current_block.values('city').annotate(c_count=Count('city')).annotate(percentage=ExpressionWrapper(F('c_count') / all_count_users, output_field=FloatField()))
+                'users': users_for_current_block.values('city').annotate(c_count=Count('city'))
             }
         })
     return return_report
