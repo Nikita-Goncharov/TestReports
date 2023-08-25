@@ -1,27 +1,28 @@
 ## TestReports
 
 
-### Make migrations and DB
+### Make migrations and migrate
 
 ```shell 
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-
 ### Script for creating users in DB
-```shell
 
+```shell
+python manage.py shell
+```
+
+```shell
 from main.models import Profile
 from faker import Faker
 import random
 
-# Initialize Faker and set random seed for consistent data generation
 faker = Faker()
 random.seed(42)
 
-# Generate test users
-num_users = 100  # Change this to the number of users you want to create
+num_users = 100 
 
 for i in range(num_users):
     username = faker.name()
@@ -31,7 +32,6 @@ for i in range(num_users):
     user = Profile.objects.create_user(username=username, email=email, date_of_birth=date_of_birth, city=city)
     print(f"{i} - {user}")
 ```
-
 
 ### Run site
 ```shell
