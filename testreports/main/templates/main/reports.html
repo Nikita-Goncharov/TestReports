@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Reports{% endblock title %}
+
+{% block content %}
+<table width="100%" border="solid 1px #000">
+    <tr>
+        <th>City</th>
+        <th>Age borders</th>
+        <th>Count</th>
+        <th>Percentage</th>
+    </tr>
+    
+    {% for block_key, block in report.items %}
+        {% if block_key != 'count_users' %}
+            {% for user in block.users %}
+                <tr>
+                    <td>{{user.city}}</td>
+                    <td>{{block.string_borders}}</td>
+                    <td>{{user.c_count}}</td>
+                    <td>{{user.percentage}}</td>
+                </tr>
+            {% endfor %}
+            <tr style="background-color: #ff6044;">
+                <td>Amount: </td>
+                <td></td>
+                <td></td>
+                <td>{{block.count_block_users}}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    <tr style="background-color: forestgreen;">
+        <td>All amount: </td>
+        <td></td>
+        <td></td>
+        <td>{{report.count_users}}</td>
+    </tr>
+</table>
+
+{% endblock content %}
