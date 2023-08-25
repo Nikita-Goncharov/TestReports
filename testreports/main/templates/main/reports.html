@@ -3,12 +3,13 @@
 {% block title %}Reports{% endblock title %}
 
 {% block content %}
-<table width="100%" border="solid 1px #000">
+<h2 class="main-txt">Clients by city and age</h2>
+<table class="table">
     <tr>
-        <th>City</th>
-        <th>Age borders</th>
-        <th>Count</th>
-        <th>Percentage</th>
+        <th class="col">City</th>
+        <th class="col">Age borders</th>
+        <th class="col">Count</th>
+        <th class="col">Percentage</th>
     </tr>
     
     {% for block_key, block in report.items %}
@@ -21,7 +22,7 @@
                     <td>{{user.percentage}}</td>
                 </tr>
             {% endfor %}
-            <tr style="background-color: #ff6044;">
+            <tr class="block-amount">
                 <td>Amount: </td>
                 <td></td>
                 <td></td>
@@ -29,7 +30,7 @@
             </tr>
         {% endif %}
     {% endfor %}
-    <tr style="background-color: forestgreen;">
+    <tr class="all-amount">
         <td>All amount: </td>
         <td></td>
         <td></td>
@@ -38,3 +39,29 @@
 </table>
 
 {% endblock content %}
+
+
+{% block styles %}
+<style>   
+    .main-txt {
+        padding: 10px; 
+        width: 100%; 
+        text-align: center; 
+        background-color: #91d3a7;
+    }
+
+    .block-amount {
+        background-color: #ff6044;
+    }
+
+    .all-amount {
+        background-color: #5ec45e;
+    }
+
+    .table {
+        width: 100%; 
+        border: solid 1px #000;
+    }
+</style>
+
+{% endblock styles %}

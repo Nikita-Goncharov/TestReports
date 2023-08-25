@@ -1,4 +1,4 @@
-from django.db.models import F, Count, FloatField, ExpressionWrapper, DecimalField, Case, When, Q, IntegerField
+from django.db.models import F, Count, FloatField, ExpressionWrapper, Case, When, Q, IntegerField
 from django.db.models.functions import ExtractDay, ExtractMonth, ExtractYear
 
 from datetime import date
@@ -18,8 +18,12 @@ def create_report():
              then=today.year - F('years') - 1),
              default=today.year - F('years'),
              output_field=IntegerField()))
-               
+      
     all_count_users = users.count()
+
+    if not all_count_users:  # Return empty dict
+        return return_report
+
     return_report.update({'count_users': all_count_users})
 
     for block_key, borders in block_borders_by_age.items():
@@ -29,7 +33,7 @@ def create_report():
             block_key: {
                 'count_block_users': users_for_current_block.count(), 
                 'string_borders': f'{borders[0]}/{borders[1]}',
-                'users': users_for_current_block.values('city').annotate(c_count=Count('city')).annotate(percentage=ExpressionWrapper(F('c_count') / all_count_users, output_field=DecimalField(max_digits=6, decimal_places=2)))
+                'users': users_for_current_block.values('city').annotate(c_count=Count('city')).annotate(percentage=ExpressionWrapper(F('c_count') / all_count_users, output_field=FloatField()))
             }
         })
     return return_report
