@@ -20,7 +20,7 @@
                     <td>{{user.city}}</td>
                     <td>{{block.string_borders}}</td>
                     <td>{{user.c_count}}</td>
-                    <td>{% percentage count_in_city=user.c_count all_count=report.count_users %}</td>
+                    <td>{% percentage count_in_city=user.c_count all_count=report.count_users %} %</td>
                 </tr>
             {% endfor %}
             <tr class="block-amount">
