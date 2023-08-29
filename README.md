@@ -14,18 +14,20 @@ python manage.py migrate
 python manage.py shell
 ```
 
-```shell
+```python
 from main.models import Profile
 from faker import Faker
-import random
 
 faker = Faker()
-random.seed(42)
 
-num_users = 100 
+num_users = 100
+
+def make_username(f):
+    return "_".join(f.name().split()).lower()
+
 
 for i in range(num_users):
-    username = faker.name()
+    username = make_username(faker)
     email = faker.email()
     date_of_birth = faker.date_of_birth(minimum_age=18, maximum_age=80)
     city = faker.city()

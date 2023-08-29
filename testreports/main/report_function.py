@@ -5,9 +5,10 @@ from datetime import date
 
 from .models import Profile
 
+
 def create_report():
     return_report = {}
-    block_borders_by_age = {'block1': (18, 30), 'block2': (31, 45), 'block3': (46, 100)}
+    block_borders_by_age = {'block1': (18, 30), 'block2': (31, 45), 'block3': (46, 80)}
     today = date.today()
     users = Profile.objects.annotate(
         years=ExtractYear(F('date_of_birth')),
