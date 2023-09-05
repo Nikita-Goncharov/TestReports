@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  site:
+    build: .
+    command: python /TestReports/testreports/manage.py runserver 0.0.0.0:8000  # TODO: EVERYTIME STARTS WITH A FUCKING "/" !!!!
+    volumes:
+      - .:/TestReports
+    ports:
+      - 8000:8000
