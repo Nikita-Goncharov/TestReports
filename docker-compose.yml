@@ -2,9 +2,22 @@ version: '3.8'
 
 services:
   site:
+    #  docker-compose exec site python /TestReports/testreports/manage.py migrate
     build: .
     command: python /TestReports/testreports/manage.py runserver 0.0.0.0:8000  # TODO: EVERYTIME STARTS WITH A FUCKING "/" !!!!
     volumes:
       - .:/TestReports
     ports:
       - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres  # Django 4.2.x does not support PostgreSQL lower than 12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+  postgres_data:
