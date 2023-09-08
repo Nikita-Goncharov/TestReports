@@ -1,12 +1,15 @@
+from datetime import date
+
 from django.db.models import F, Count, Case, When, Q, IntegerField
 from django.db.models.functions import ExtractDay, ExtractMonth, ExtractYear
 
-from datetime import date
-
 from .models import Profile
+
+__doc__ = "Module for creating reports"
 
 
 def create_report():
+    """Report function."""
     return_report = {}
     block_borders_by_age = {'block1': (18, 30), 'block2': (31, 45), 'block3': (46, 80)}
     today = date.today()
@@ -19,7 +22,7 @@ def create_report():
              then=today.year - F('years') - 1),
              default=today.year - F('years'),
              output_field=IntegerField()))
-      
+
     all_count_users = users.count()
 
     if not all_count_users:  # Return empty dict

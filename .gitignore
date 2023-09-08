@@ -1,5 +1,6 @@
 .idea/
 .vscode/
+.ruff_cache/
 
 __pycache__/
 migrations/

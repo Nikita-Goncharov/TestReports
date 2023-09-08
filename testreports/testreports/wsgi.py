@@ -1,5 +1,4 @@
-"""
-WSGI config for testreports project.
+"""WSGI config for testreports project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

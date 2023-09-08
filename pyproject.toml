@@ -1,0 +1,15 @@
+[project]
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 80
+src = ["testreports"]
+select = [
+    "E", # python code style
+    "F", # pyflakes
+    "UP", # upgrade python version
+    "D" # docstring
+]
+
+[tool.ruff.pydocstyle]
+convention = "google"
