@@ -9,4 +9,5 @@ COPY . /TestReports
 
 RUN pip install -r requirements.txt
 
-
+RUN chmod +x /TestReports/docker-entrypoint.sh
+ENTRYPOINT ["sh", "/TestReports/docker-entrypoint.sh"]
