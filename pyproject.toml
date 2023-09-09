@@ -8,7 +8,8 @@ select = [
     "E", # python code style
     "F", # pyflakes
     "UP", # upgrade python version
-    "D" # docstring
+    #"D", # docstring
+    "N", # pep8 naming
 ]
 
 [tool.ruff.pydocstyle]
