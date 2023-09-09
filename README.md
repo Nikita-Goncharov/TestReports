@@ -1,5 +1,9 @@
 ## TestReports
 
+### Install dependencies
+```shell
+pip install -r requirements.txt
+```
 
 ### Make migrations and migrate
 
@@ -38,4 +42,10 @@ for i in range(num_users):
 ### Run site
 ```shell
 python manage.py runserver
+```
+
+### Run ruff(linter)
+All configurations in **pyproject.toml** 
+```shell
+ruff check .
 ```
